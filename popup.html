@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Email Harvester</title>
+    <title>Super Email Noticer</title>
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
@@ -18,32 +18,32 @@
             </svg>
           </div>
           <div class="brand-text">
-            <div class="brand-title">Email Harvester</div>
-            <div class="brand-sub">Premium Edition</div>
+            <div class="brand-title">Super Email Noticer</div>
+            <div class="brand-sub">Pastel Edition</div>
           </div>
         </div>
-        <button id="scanBtn" class="btn btn-primary" title="Scan current tab">
+        <button id="scanBtn" class="btn btn-primary" title="Notice emails on this page">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="7"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
-          <span>Scan Page</span>
+          <span>Notice Emails</span>
         </button>
       </header>
 
       <!-- Stat Cards -->
       <section class="stats">
-        <div class="stat-card">
+        <div class="stat-card stat-pink">
           <div class="stat-label">Total Emails</div>
           <div class="stat-value" id="statTotal">0</div>
           <div class="stat-foot">on this page</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-mint">
           <div class="stat-label">Unique Domains</div>
           <div class="stat-value" id="statDomains">0</div>
           <div class="stat-foot">distinct providers</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card stat-lilac">
           <div class="stat-label">Top Domain</div>
           <div class="stat-value small" id="statTop">—</div>
           <div class="stat-foot">most frequent</div>
@@ -71,7 +71,7 @@
       <!-- List Panel -->
       <section class="panel hidden" id="panel-list">
         <div class="panel-head">
-          <div class="panel-title">Collected Emails</div>
+          <div class="panel-title">Noticed Emails</div>
           <div class="panel-actions">
             <button id="copyBtn" class="btn btn-ghost" title="Copy all to clipboard">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -104,15 +104,15 @@
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
         </div>
-        <div class="empty-title">No emails collected yet</div>
-        <div class="empty-sub">Click <strong>Scan Page</strong> to extract email addresses from the current tab.</div>
+        <div class="empty-title">No emails noticed yet</div>
+        <div class="empty-sub">Click <strong>Notice Emails</strong> to scan this page for addresses.</div>
       </section>
 
       <!-- Toast -->
       <div id="toast" class="toast"></div>
 
       <footer class="footer">
-        <span class="footer-left">Email Harvester · v1.0</span>
+        <span class="footer-left">Super Email Noticer · v1.1</span>
         <span class="footer-right" id="pageInfo">—</span>
       </footer>
     </div>

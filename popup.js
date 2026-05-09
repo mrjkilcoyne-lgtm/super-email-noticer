@@ -1,5 +1,5 @@
 // ============================================================
-// Email Harvester — popup logic
+// Super Email Noticer — popup logic
 // Handles scanning, rendering chart on canvas, list, search,
 // copy & CSV export, and persistent state.
 // ============================================================
@@ -69,16 +69,16 @@ function getDomainCounts(emails) {
   return Object.entries(counts).sort((a, b) => b[1] - a[1]);
 }
 
-// ----- Premium gold gradient palette for bars -----
+// ----- Pastel palette for bars (light → mid stops) -----
 const PALETTE = [
-  ["#f5d28a", "#a87c2c"],
-  ["#e9c79a", "#8a5a1f"],
-  ["#d4a857", "#6b4416"],
-  ["#c9b079", "#7c5a25"],
-  ["#b89556", "#5b3d12"],
-  ["#a8884a", "#4a3210"],
-  ["#9d7e44", "#3f2a0d"],
-  ["#8e7140", "#352309"],
+  ["#ffd6e0", "#f48fb1"], // pink
+  ["#d4f1e0", "#6dceae"], // mint
+  ["#e6dcfb", "#9d86e6"], // lilac
+  ["#ffe1c9", "#ff9a6b"], // peach
+  ["#d4ecff", "#6cb8f5"], // sky
+  ["#fff5c2", "#ffd54f"], // lemon
+  ["#fadcf0", "#e69cc8"], // rose
+  ["#dff5e8", "#7ed4a3"], // jade
 ];
 
 function colorFor(i) {
@@ -86,13 +86,12 @@ function colorFor(i) {
 }
 
 // ============================================================
-// Custom canvas bar chart — designed for the premium dark UI
+// Custom canvas bar chart — pastel styling on light surface
 // ============================================================
 function drawChart(canvas, data) {
   const ctx = canvas.getContext("2d");
   const dpr = window.devicePixelRatio || 1;
 
-  // Resize to actual displayed size for sharp rendering.
   const cssW = canvas.clientWidth || 380;
   const cssH = canvas.clientHeight || 220;
   canvas.width = cssW * dpr;
@@ -102,7 +101,7 @@ function drawChart(canvas, data) {
   ctx.clearRect(0, 0, cssW, cssH);
 
   if (!data.length) {
-    ctx.fillStyle = "#6b7385";
+    ctx.fillStyle = "#b1a5be";
     ctx.font = "12px -apple-system, Inter, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -113,14 +112,14 @@ function drawChart(canvas, data) {
   const top = data.slice(0, 8);
   const padL = 14;
   const padR = 14;
-  const padT = 14;
+  const padT = 18;
   const padB = 36;
   const chartW = cssW - padL - padR;
   const chartH = cssH - padT - padB;
   const max = Math.max(...top.map((d) => d[1]));
 
-  // Horizontal grid lines.
-  ctx.strokeStyle = "rgba(255,255,255,0.04)";
+  // Soft horizontal grid lines.
+  ctx.strokeStyle = "rgba(78, 50, 90, 0.06)";
   ctx.lineWidth = 1;
   const gridSteps = 4;
   for (let i = 0; i <= gridSteps; i++) {
@@ -141,15 +140,20 @@ function drawChart(canvas, data) {
     const x = padL + i * (barW + gap);
     const y = padT + (chartH - h);
 
-    // Gradient fill.
+    // Pastel gradient fill.
     const [c1, c2] = colorFor(i);
     const grad = ctx.createLinearGradient(0, y, 0, y + h);
-    grad.addColorStop(0, c1);
-    grad.addColorStop(1, c2);
+    grad.addColorStop(0, c2);
+    grad.addColorStop(1, c1);
     ctx.fillStyle = grad;
 
+    // Soft shadow underneath.
+    ctx.shadowColor = "rgba(193, 145, 180, 0.25)";
+    ctx.shadowBlur = 6;
+    ctx.shadowOffsetY = 2;
+
     // Rounded top.
-    const r = Math.min(5, barW / 2, h / 2);
+    const r = Math.min(7, barW / 2, h / 2);
     ctx.beginPath();
     ctx.moveTo(x, y + h);
     ctx.lineTo(x, y + r);
@@ -160,31 +164,30 @@ function drawChart(canvas, data) {
     ctx.closePath();
     ctx.fill();
 
-    // Subtle inner highlight for premium feel.
-    ctx.fillStyle = "rgba(255,255,255,0.18)";
+    // Reset shadow before drawing text/highlights.
+    ctx.shadowColor = "transparent";
+    ctx.shadowBlur = 0;
+    ctx.shadowOffsetY = 0;
+
+    // Subtle inner highlight.
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
     ctx.fillRect(x + 1, y + 1, barW - 2, 1);
 
     // Value label above bar.
-    ctx.fillStyle = "#e9ecf1";
-    ctx.font = "600 11px -apple-system, Inter, sans-serif";
+    ctx.fillStyle = "#4a3a55";
+    ctx.font = "700 11px -apple-system, Inter, sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "alphabetic";
-    if (h > 14) {
-      ctx.fillText(String(count), x + barW / 2, y - 4);
-    } else {
-      ctx.fillText(String(count), x + barW / 2, y - 4);
-    }
+    ctx.fillText(String(count), x + barW / 2, y - 5);
 
     // Domain label below bar.
-    ctx.save();
-    ctx.fillStyle = "#9aa3b2";
+    ctx.fillStyle = "#8a7d97";
     ctx.font = "10px -apple-system, Inter, sans-serif";
     ctx.textAlign = "center";
     let label = domain;
     const maxLen = Math.floor(barW / 5.5);
     if (label.length > maxLen) label = label.slice(0, Math.max(3, maxLen - 1)) + "…";
     ctx.fillText(label, x + barW / 2, padT + chartH + 14);
-    ctx.restore();
   });
 }
 
@@ -197,7 +200,7 @@ function renderLegend(data) {
     const item = document.createElement("div");
     item.className = "legend-item";
     item.innerHTML = `
-      <span class="legend-dot" style="background: linear-gradient(135deg, ${c1}, ${c2});"></span>
+      <span class="legend-dot" style="background: linear-gradient(135deg, ${c2}, ${c1});"></span>
       <span>${escapeHtml(domain)} · ${count}</span>
     `;
     legendBox.appendChild(item);
@@ -214,7 +217,8 @@ function renderList() {
     li.className = "email-item";
     li.style.justifyContent = "center";
     li.style.color = "var(--text-mute)";
-    li.textContent = filter ? "No matches" : "No emails collected yet";
+    li.style.cursor = "default";
+    li.textContent = filter ? "No matches" : "No emails noticed yet";
     emailList.appendChild(li);
     return;
   }
@@ -253,7 +257,6 @@ function renderAll() {
 
   if (total > 0) {
     emptyState.classList.add("hidden");
-    // Show whichever panel is currently active.
     const activeTab = document.querySelector(".tab.active").dataset.tab;
     if (activeTab === "chart") {
       panelChart.classList.remove("hidden");
@@ -311,7 +314,6 @@ async function scanActiveTab() {
       files: ["content.js"],
     });
 
-    // Merge results from all frames.
     const merged = new Set();
     let pageUrl = tab.url;
     let pageTitle = tab.title || "";
@@ -333,7 +335,7 @@ async function scanActiveTab() {
     });
 
     renderAll();
-    showToast(state.emails.length ? `Found ${state.emails.length} email${state.emails.length === 1 ? "" : "s"}` : "No emails found");
+    showToast(state.emails.length ? `Noticed ${state.emails.length} email${state.emails.length === 1 ? "" : "s"}` : "No emails noticed");
   } catch (err) {
     console.error(err);
     showToast("Scan failed: " + (err.message || "unknown"));

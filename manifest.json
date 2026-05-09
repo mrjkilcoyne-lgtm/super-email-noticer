@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Email Harvester — Premium",
-  "short_name": "Email Harvester",
-  "version": "1.0.0",
-  "description": "Premium-styled Chrome extension that collects email addresses from any webpage and visualizes them in an interactive graph.",
+  "name": "Super Email Noticer",
+  "short_name": "Super Email Noticer",
+  "version": "1.1.0",
+  "description": "Super Email Noticer — pastel-themed Chrome extension that notices email addresses on any webpage and visualises them in a friendly graph.",
   "permissions": ["activeTab", "scripting", "storage"],
   "host_permissions": ["<all_urls>"],
   "action": {
-    "default_title": "Email Harvester",
+    "default_title": "Super Email Noticer",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

@@ -1,28 +1,51 @@
 /* ============================================================
-   Email Harvester — Premium Edition
-   Dark luxe theme · gold accents · glass surfaces
+   Super Email Noticer — Pastel Edition
+   Soft pastels · cream surfaces · gentle shadows
    ============================================================ */
 
 :root {
-  --bg-0: #0b0d12;
-  --bg-1: #0f1218;
-  --bg-2: #151924;
-  --bg-3: #1c2230;
-  --line: rgba(255, 255, 255, 0.06);
-  --line-strong: rgba(255, 255, 255, 0.12);
-  --text: #e9ecf1;
-  --text-dim: #9aa3b2;
-  --text-mute: #6b7385;
-  --gold-1: #f5d28a;
-  --gold-2: #d4a857;
-  --gold-3: #a87c2c;
-  --accent: linear-gradient(135deg, #f5d28a 0%, #d4a857 50%, #a87c2c 100%);
-  --accent-soft: linear-gradient(135deg, rgba(245, 210, 138, 0.18), rgba(168, 124, 44, 0.08));
-  --danger: #ef5b6b;
-  --shadow-1: 0 6px 20px rgba(0, 0, 0, 0.35);
-  --shadow-2: 0 10px 30px rgba(0, 0, 0, 0.45);
-  --radius: 12px;
-  --radius-sm: 8px;
+  /* Pastel palette */
+  --pink-1: #ffd6e0;
+  --pink-2: #ffb3c7;
+  --pink-3: #f48fb1;
+  --mint-1: #d4f1e0;
+  --mint-2: #a8e6cf;
+  --mint-3: #6dceae;
+  --lilac-1: #e6dcfb;
+  --lilac-2: #c9b8f5;
+  --lilac-3: #9d86e6;
+  --peach-1: #ffe1c9;
+  --peach-2: #ffc59e;
+  --peach-3: #ff9a6b;
+  --sky-1: #d4ecff;
+  --sky-2: #a8d8ff;
+  --sky-3: #6cb8f5;
+  --lemon-1: #fff5c2;
+  --lemon-2: #ffe98a;
+  --lemon-3: #ffd54f;
+
+  /* Surfaces */
+  --bg-0: #fff8f9;        /* page bg, warm cream */
+  --bg-1: #ffffff;        /* card bg */
+  --bg-2: #fdf4f7;        /* hover bg */
+  --bg-3: #f7eef3;        /* secondary surface */
+  --line: rgba(78, 50, 90, 0.08);
+  --line-strong: rgba(78, 50, 90, 0.18);
+
+  /* Text */
+  --text: #4a3a55;        /* deep aubergine for legibility */
+  --text-dim: #8a7d97;
+  --text-mute: #b1a5be;
+
+  /* Brand accent (pink ↔ lilac gradient) */
+  --accent: linear-gradient(135deg, #ffb3c7 0%, #c9b8f5 100%);
+  --accent-soft: linear-gradient(135deg, rgba(255, 179, 199, 0.18), rgba(201, 184, 245, 0.18));
+  --accent-strong: #c98ab3;
+
+  --shadow-1: 0 6px 18px rgba(193, 145, 180, 0.18);
+  --shadow-2: 0 12px 30px rgba(193, 145, 180, 0.25);
+  --radius: 14px;
+  --radius-sm: 10px;
 }
 
 * {
@@ -43,10 +66,11 @@ body {
 }
 
 body {
-  /* Subtle radial glow for the premium feel. */
+  /* Soft pastel watercolour bg */
   background:
-    radial-gradient(ellipse 600px 300px at 80% -10%, rgba(212, 168, 87, 0.10), transparent 60%),
-    radial-gradient(ellipse 500px 300px at 0% 100%, rgba(120, 90, 200, 0.07), transparent 60%),
+    radial-gradient(ellipse 500px 280px at 85% -10%, rgba(255, 179, 199, 0.35), transparent 60%),
+    radial-gradient(ellipse 500px 280px at -10% 110%, rgba(201, 184, 245, 0.30), transparent 60%),
+    radial-gradient(ellipse 400px 250px at 50% 50%, rgba(168, 230, 207, 0.18), transparent 70%),
     var(--bg-0);
 }
 
@@ -73,33 +97,34 @@ body {
 }
 
 .logo {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--accent);
-  color: #1a1208;
-  border-radius: 10px;
-  box-shadow: var(--shadow-1), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-1), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .brand-title {
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.2px;
-  background: var(--accent);
+  background: linear-gradient(135deg, #e07ba4 0%, #8a6fd1 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .brand-sub {
-  font-size: 10px;
+  font-size: 9.5px;
   color: var(--text-mute);
   letter-spacing: 1.4px;
   text-transform: uppercase;
-  margin-top: 1px;
+  margin-top: 2px;
+  font-weight: 600;
 }
 
 /* ============ Buttons ============ */
@@ -110,7 +135,7 @@ body {
   padding: 8px 12px;
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
-  background: var(--bg-2);
+  background: var(--bg-1);
   color: var(--text);
   font-size: 12px;
   font-weight: 600;
@@ -121,8 +146,8 @@ body {
 }
 
 .btn:hover {
-  border-color: rgba(245, 210, 138, 0.4);
-  background: var(--bg-3);
+  border-color: var(--accent-strong);
+  background: var(--bg-2);
 }
 
 .btn:active {
@@ -131,27 +156,28 @@ body {
 
 .btn-primary {
   background: var(--accent);
-  color: #1a1208;
-  border: 1px solid rgba(245, 210, 138, 0.5);
-  box-shadow: 0 6px 16px rgba(212, 168, 87, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 16px rgba(201, 138, 179, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 0 rgba(140, 70, 110, 0.15);
 }
 
 .btn-primary:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.04) saturate(1.05);
   background: var(--accent);
-  border-color: rgba(245, 210, 138, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
 }
 
 .btn-ghost {
-  background: transparent;
+  background: var(--bg-1);
   border: 1px solid var(--line-strong);
   color: var(--text-dim);
   padding: 6px 10px;
 }
 .btn-ghost:hover {
-  color: var(--gold-1);
-  border-color: rgba(245, 210, 138, 0.4);
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 /* ============ Stat Cards ============ */
@@ -164,38 +190,45 @@ body {
 .stat-card {
   position: relative;
   padding: 10px 10px 9px;
-  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  background: var(--bg-1);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(193, 145, 180, 0.08);
 }
 
+/* Soft pastel wash on top of each card */
 .stat-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: var(--radius);
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    rgba(245, 210, 138, 0.35),
-    rgba(255, 255, 255, 0.02) 40%,
-    rgba(245, 210, 138, 0.15) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
   pointer-events: none;
+  border-radius: var(--radius);
+  opacity: 0.6;
+}
+.stat-pink::before {
+  background: linear-gradient(160deg, var(--pink-1) 0%, transparent 70%);
+}
+.stat-mint::before {
+  background: linear-gradient(160deg, var(--mint-1) 0%, transparent 70%);
+}
+.stat-lilac::before {
+  background: linear-gradient(160deg, var(--lilac-1) 0%, transparent 70%);
+}
+
+.stat-label,
+.stat-value,
+.stat-foot {
+  position: relative;
+  z-index: 1;
 }
 
 .stat-label {
   font-size: 9.5px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--text-mute);
-  font-weight: 600;
+  color: var(--text-dim);
+  font-weight: 700;
 }
 
 .stat-value {
@@ -203,18 +236,33 @@ body {
   font-size: 22px;
   font-weight: 700;
   color: var(--text);
-  background: var(--accent);
+  line-height: 1.1;
+}
+
+.stat-pink .stat-value {
+  background: linear-gradient(135deg, #f48fb1 0%, #c98ab3 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  line-height: 1.1;
+}
+.stat-mint .stat-value {
+  background: linear-gradient(135deg, #6dceae 0%, #5fb39a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-lilac .stat-value {
+  background: linear-gradient(135deg, #9d86e6 0%, #7a64c9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-value.small {
   font-size: 13px;
   word-break: break-all;
   -webkit-text-fill-color: var(--text);
-  background: none;
+  background: none !important;
 }
 
 .stat-foot {
@@ -231,6 +279,7 @@ body {
   background: var(--bg-1);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(193, 145, 180, 0.06);
 }
 
 .tab {
@@ -242,7 +291,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 7px;
   transition: background 0.18s ease, color 0.18s ease;
 }
 
@@ -251,20 +300,21 @@ body {
 }
 
 .tab.active {
-  background: var(--bg-3);
-  color: var(--gold-1);
-  box-shadow: inset 0 0 0 1px rgba(245, 210, 138, 0.25);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  box-shadow: inset 0 0 0 1px rgba(201, 138, 179, 0.25);
 }
 
 /* ============ Panels ============ */
 .panel {
-  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  background: var(--bg-1);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-shadow: 0 4px 12px rgba(193, 145, 180, 0.08);
 }
 
 .panel.hidden {
@@ -299,8 +349,9 @@ body {
   position: relative;
   height: 220px;
   background:
-    radial-gradient(ellipse at center, rgba(245, 210, 138, 0.04), transparent 70%),
-    var(--bg-1);
+    radial-gradient(ellipse at top right, rgba(255, 179, 199, 0.18), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(201, 184, 245, 0.18), transparent 60%),
+    var(--bg-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 8px;
@@ -328,11 +379,12 @@ body {
 }
 
 .legend-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
   flex-shrink: 0;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5),
+    0 1px 2px rgba(193, 145, 180, 0.2);
 }
 
 /* ============ Search & List ============ */
@@ -343,7 +395,7 @@ body {
 .search {
   width: 100%;
   padding: 8px 10px;
-  background: var(--bg-1);
+  background: var(--bg-2);
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-sm);
   color: var(--text);
@@ -357,8 +409,9 @@ body {
 }
 
 .search:focus {
-  border-color: rgba(245, 210, 138, 0.5);
-  box-shadow: 0 0 0 3px rgba(245, 210, 138, 0.1);
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 0 3px rgba(201, 138, 179, 0.15);
+  background: var(--bg-1);
 }
 
 .email-list {
@@ -378,11 +431,11 @@ body {
   background: transparent;
 }
 .email-list::-webkit-scrollbar-thumb {
-  background: var(--bg-3);
+  background: var(--lilac-2);
   border-radius: 3px;
 }
 .email-list::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-3);
+  background: var(--lilac-3);
 }
 
 .email-item {
@@ -391,17 +444,19 @@ body {
   justify-content: space-between;
   gap: 8px;
   padding: 8px 10px;
-  background: var(--bg-1);
+  background: var(--bg-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   font-size: 12px;
   color: var(--text);
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+  cursor: pointer;
 }
 
 .email-item:hover {
-  border-color: rgba(245, 210, 138, 0.3);
-  background: var(--bg-2);
+  border-color: var(--accent-strong);
+  background: var(--bg-1);
+  transform: translateY(-1px);
 }
 
 .email-text {
@@ -413,13 +468,14 @@ body {
 
 .email-domain {
   font-size: 10px;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 999px;
   background: var(--accent-soft);
-  color: var(--gold-1);
-  border: 1px solid rgba(245, 210, 138, 0.2);
+  color: var(--accent-strong);
+  border: 1px solid rgba(201, 138, 179, 0.25);
   white-space: nowrap;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 /* ============ Empty State ============ */
@@ -431,7 +487,7 @@ body {
   justify-content: center;
   text-align: center;
   padding: 30px 16px;
-  background: linear-gradient(180deg, var(--bg-2), var(--bg-1));
+  background: var(--bg-1);
   border: 1px dashed var(--line-strong);
   border-radius: var(--radius);
 }
@@ -441,16 +497,16 @@ body {
 }
 
 .empty-icon {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   background: var(--accent-soft);
-  border: 1px solid rgba(245, 210, 138, 0.2);
+  border: 1px solid rgba(201, 138, 179, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold-1);
-  margin-bottom: 10px;
+  color: var(--accent-strong);
+  margin-bottom: 12px;
 }
 
 .empty-title {
@@ -462,14 +518,14 @@ body {
 
 .empty-sub {
   font-size: 11.5px;
-  color: var(--text-mute);
+  color: var(--text-dim);
   line-height: 1.5;
   max-width: 260px;
 }
 
 .empty-sub strong {
-  color: var(--gold-1);
-  font-weight: 600;
+  color: var(--accent-strong);
+  font-weight: 700;
 }
 
 /* ============ Toast ============ */
@@ -481,7 +537,7 @@ body {
   padding: 8px 14px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #1a1208;
+  color: #ffffff;
   background: var(--accent);
   border-radius: 999px;
   box-shadow: var(--shadow-2);
@@ -519,7 +575,7 @@ body {
 .btn-primary.scanning {
   position: relative;
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .btn-primary.scanning::after {
@@ -530,7 +586,7 @@ body {
   background: linear-gradient(
     100deg,
     transparent 30%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.55) 50%,
     transparent 70%
   );
   animation: shimmer 1.2s linear infinite;
