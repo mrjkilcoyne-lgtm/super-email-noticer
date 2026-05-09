@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Email Harvester — Premium",
+  "short_name": "Email Harvester",
+  "version": "1.0.0",
+  "description": "Premium-styled Chrome extension that collects email addresses from any webpage and visualizes them in an interactive graph.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Email Harvester",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

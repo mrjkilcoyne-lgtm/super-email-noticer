@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Harvester</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="logo">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-title">Email Harvester</div>
+            <div class="brand-sub">Premium Edition</div>
+          </div>
+        </div>
+        <button id="scanBtn" class="btn btn-primary" title="Scan current tab">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <span>Scan Page</span>
+        </button>
+      </header>
+
+      <!-- Stat Cards -->
+      <section class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Total Emails</div>
+          <div class="stat-value" id="statTotal">0</div>
+          <div class="stat-foot">on this page</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Unique Domains</div>
+          <div class="stat-value" id="statDomains">0</div>
+          <div class="stat-foot">distinct providers</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Top Domain</div>
+          <div class="stat-value small" id="statTop">—</div>
+          <div class="stat-foot">most frequent</div>
+        </div>
+      </section>
+
+      <!-- Tabs -->
+      <nav class="tabs">
+        <button class="tab active" data-tab="chart">Distribution</button>
+        <button class="tab" data-tab="list">Email List</button>
+      </nav>
+
+      <!-- Chart Panel -->
+      <section class="panel" id="panel-chart">
+        <div class="panel-head">
+          <div class="panel-title">Domain Distribution</div>
+          <div class="panel-sub" id="chartSub">No data yet</div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="chart" width="380" height="220"></canvas>
+        </div>
+        <div class="legend" id="legend"></div>
+      </section>
+
+      <!-- List Panel -->
+      <section class="panel hidden" id="panel-list">
+        <div class="panel-head">
+          <div class="panel-title">Collected Emails</div>
+          <div class="panel-actions">
+            <button id="copyBtn" class="btn btn-ghost" title="Copy all to clipboard">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+            <button id="csvBtn" class="btn btn-ghost" title="Download as CSV">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7,10 12,15 17,10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>CSV</span>
+            </button>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <input id="searchInput" class="search" type="text" placeholder="Filter emails…" />
+        </div>
+        <ul id="emailList" class="email-list"></ul>
+      </section>
+
+      <!-- Empty State -->
+      <section class="empty" id="emptyState">
+        <div class="empty-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="empty-title">No emails collected yet</div>
+        <div class="empty-sub">Click <strong>Scan Page</strong> to extract email addresses from the current tab.</div>
+      </section>
+
+      <!-- Toast -->
+      <div id="toast" class="toast"></div>
+
+      <footer class="footer">
+        <span class="footer-left">Email Harvester · v1.0</span>
+        <span class="footer-right" id="pageInfo">—</span>
+      </footer>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+# Dev/preview artifacts
+preview.png
+preview_list.png
+popup_preview.html
+popup_preview_list.html
+make_icons.py
+__pycache__/
+*.pyc
+.DS_Store
