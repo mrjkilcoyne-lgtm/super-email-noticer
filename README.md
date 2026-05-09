@@ -1,6 +1,16 @@
 # Email Harvester — Premium Edition
 
-A Chrome extension (Manifest V3) that collects email addresses from the current webpage and visualizes them in a premium-styled interactive graph.
+A Chrome extension (Manifest V3) that collects email addresses from the current webpage and visualizes them in a premium-styled, interactive graph.
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Manifest V3](https://img.shields.io/badge/Manifest-V3-4285F4)
+![Platform](https://img.shields.io/badge/platform-Chrome-blue)
+
+## Screenshots
+
+| Distribution graph | Email list |
+|---|---|
+| ![Graph view](docs/screenshot-graph.png) | ![List view](docs/screenshot-list.png) |
 
 ## Features
 
@@ -10,14 +20,18 @@ A Chrome extension (Manifest V3) that collects email addresses from the current 
 - **Export** — copy all emails to clipboard or download as CSV
 - **Premium UI** — dark luxe theme, gold accents, glass surfaces, smooth animations
 - **Persistent state** — remembers your last scan via `chrome.storage.local`
+- **Privacy-first** — everything stays in your browser; no network requests are made
 
 ## Installation (Developer Mode)
 
-1. Unzip `email-harvester.zip` to a folder of your choice.
+1. Clone or download this repository:
+   ```bash
+   git clone https://github.com/mrjkilcoyne-lgtm/email-harvester.git
+   ```
 2. Open Chrome and navigate to `chrome://extensions/`.
-3. Toggle **Developer mode** (top-right corner) to **ON**.
+3. Toggle **Developer mode** (top-right) to **ON**.
 4. Click **Load unpacked**.
-5. Select the unzipped `email-harvester` folder.
+5. Select the `email-harvester` folder.
 6. Pin the extension from the toolbar puzzle icon for easy access.
 
 ## Usage
@@ -38,10 +52,17 @@ email-harvester/
 ├── popup.html         # Popup UI structure
 ├── popup.css          # Premium dark + gold styling
 ├── popup.js           # Popup logic, custom canvas chart
-└── icons/             # Gold envelope icons (16, 32, 48, 128)
+├── icons/             # Gold envelope icons (16, 32, 48, 128)
+├── docs/              # README screenshots
+├── LICENSE            # MIT License
+└── README.md
 ```
 
 ## Notes
 
-- The extension does not send any data anywhere — everything stays in your browser.
-- Some pages (chrome://, Web Store, etc.) cannot be scanned by browser policy.
+- Some pages (`chrome://`, the Web Store, etc.) cannot be scanned by browser policy.
+- The regex matches standard `local@domain.tld` addresses; obfuscated formats (`name [at] domain [dot] com`) are not detected.
+
+## License
+
+[MIT](LICENSE) © 2026 mrjkilcoyne-lgtm
